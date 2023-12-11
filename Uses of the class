@@ -1,0 +1,243 @@
+
+
+
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
+package com.mycompany.universityexpense;
+
+/**
+ *
+ * @author Apurba
+ */
+import java.util.Scanner;
+
+public class UniversityExpense {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Select the Category: 1.Resident 2.Non-resident: ");
+      
+        int b= sc.nextInt();
+        switch (b) {
+            case 1:
+                System.out.println( "Your Tution fee will be "+30000);
+                Oncampus z=new Oncampus();
+                z.calculate();
+                break;
+            case 2:
+                System.out.println("Your Tution fee will be "+24000);
+                Online off=new Online();
+                off.calculate();
+                break;
+            default:
+                System.out.println("Select the category pls");
+                break;
+        }
+    
+         
+          
+    }
+}
+
+
+Explanation: 
+Here UniversityExpense is my main class. Here I have made the main function. Inside the main function I have used switch statement as there is main two categories in the question. 1 is residence and 2 is non-residence. Inside the cases I have made the object of the particular classes and using the function I have called the method. There are constructors which are automatically called. Here I import Scanner class from java utility and make the object sc of it to take input as int from the user which defines the category here. Here the access modifiers are public. The class is public.
+
+
+
+
+
+
+
+
+
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.universityexpense;
+
+/**
+ *
+ * @author Apurba
+ */
+
+import java.util.Scanner;
+
+abstract class Student {
+    
+    abstract void calculate();
+   
+    
+    Scanner sc= new Scanner(System.in);
+   
+    int tutionfee;
+    int extrafee; 
+    int credit;
+    public Student(){
+        System.out.println("Enter your name: ");
+        String f=sc.nextLine();
+        System.out.println("Enter your id: ");
+        int id=sc.nextInt();
+    }
+    
+}
+
+
+Explanation:
+Here at fist I have imported Scanner and make object of it to take input the name and the id. I have made the class abstract here and declared abstract method inside the Student class. I have made a constructor here as the class name and constructor name should be same. In the constructor I have taken name and id as input. Then I extend or inherit the abstract class from another class. The class is a public class here and also the variables.
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.universityexpense;
+
+/**
+ *
+ * @author Apurba
+ */
+import java.util.Scanner;
+
+public class Oncampus extends Student implements ProfessionalCourse {
+    
+   Scanner sc=new Scanner(System.in) ;
+   public Oncampus(){
+       
+       super();
+   }
+  
+   @Override
+    public void calculate(){
+        extrafee=2000;
+        tutionfee=30000;
+        
+        System.out.println("How many credits you have taken:");
+        int r=sc.nextInt();
+        System.out.println("Per credit fee is 3500");
+        int totalcreditfee=(r*3500);
+        System.out.println("Total credits fee:"+totalcreditfee);
+        int course=professionalcourse();
+        System.out.println("Extra fee:Library,Bus: "+extrafee);
+        int total=tutionfee+course+extrafee+totalcreditfee;
+        System.out.println("..........................................");
+        System.out.println("The total cost is: "+total);
+        
+    }
+    
+    
+    
+   @Override
+   public int professionalcourse() {
+        int meow;
+
+        System.out.println("Which course do you do: 1. Networking 2. Software developing");
+        int o = sc.nextInt();
+
+        
+
+        switch (o) {
+            case 1:
+                meow = 5000;
+                System.out.println("The networking course fee is " + meow);
+                break;
+            case 2:
+                meow = 4500;
+                System.out.println("The software development course fee is " + meow);
+                break;
+            default:
+                
+                System.out.println("Enter the correct option");
+                return 0; // Return a default value if an incorrect option is entered
+        }
+
+        return meow;
+    }
+   
+   
+
+    
+}
+
+
+Explanation:
+Here in Oncampus class I have imported the Scanner to take input. Then I extend the Student abstract class and override the method called calculate. So here I have used abstraction and polymorphism and then I implements an interface class named ProfessionalCourse as the students of on campus have done different types of professional courses and the courses have some amount to enroll. To inherit the constructor I have made a own constructor and use super() function to inherit the property of that class Here I have used inheritance of oop to inherits the tutionfee and extrafee variables from the Student class. Then I have take the input of credits num and multiply it with the per credit hour. There are some extra fee for the on campus student like bus library fee. Then calculate the total fee. Here I have used the function professionalcourse function. Inside the function I have used switch case to know which course the student is doing. I have made a variable named meow here. I return the meow to the calculate function. I will return the amount of the skill development course fee. Then add all the amounts and shows it. The class is a public class and the variables and methods are also public.
+
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.universityexpense;
+
+/**
+ *
+ * @author Apurba
+ */
+import java.util.Scanner;
+public class Online extends Student {
+    
+    
+      public Online(){
+          
+          super();
+          
+      }
+      
+    @Override
+    public void calculate(){
+        extrafee=0;
+        tutionfee=24000;
+        System.out.println("How many credits you have taken:");
+        int r=sc.nextInt();
+        System.out.println("Per credit fee is 3500");
+        int totalcreditfee=(r*3500);
+        System.out.println("Total credits fee:"+totalcreditfee);
+        System.out.println("No extra fee");
+        int total=tutionfee+extrafee+totalcreditfee;
+        System.out.println(".....................................");
+        System.out.println("The total cost is: "+total);
+        
+    }
+    
+}
+
+Explanation:
+Here in online class at first I have inherited or extended from the Student class. In the Student class I have made a constructor. So to inherit the constructor I have made a own constructor and use super() function to inherit the property of that class. The student class is a abstract class it has a method called calculate which is an abstract method. Then I overrides the method like polymorphism and inside it I have made all the calculation. I have imported the Scanner to take input. Then there is no extra fee here. I have take the credit number from the user and multiply it with per credit fee and at last calculate the total cost. There is no skill development course for online. The class is public here.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.universityexpense;
+
+/**
+ *
+ * @author Apurba
+ */
+interface ProfessionalCourse {
+    public int professionalcourse();
+}
+
+
+
+Explanation:
+Here ProfessionalCourse is an interface class. I have implemented the class in Oncampus class An interface in Java is a blueprint of a class. It has static constants and abstract methods.The interface in Java is a mechanism to achieve abstraction. There can be only abstract methods in the Java interface, not method body. It is used to achieve abstraction and multiple inheritance in Java. Interface class is public by default.
+Output:
+ 
